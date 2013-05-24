@@ -14,10 +14,8 @@ import java.util.HashMap;
 
 public class EmotIconsBehavior extends Behavior{
 
-	private HashMap<String,String[]> emoticonizeClassMap=new HashMap<String,String[]>();
-	private HashMap<String,String[]> unEmoticonizeClassMap=new HashMap<String,String[]>();
-	private HashMap<String,String[]> emoticonizeIdMap=new HashMap<String,String[]>();
-	private HashMap<String,String[]> unEmoticonizeIdMap=new HashMap<String,String[]>();
+	private HashMap<String,String[]> emoticonize=new HashMap<String,String[]>();
+	private HashMap<String,String[]> unEmoticonize=new HashMap<String,String[]>();
 
 	private static final JQueryPluginResourceReference JS1=new JQueryPluginResourceReference(EmotIconsBehavior.class,"jquery.cssemoticons.js");
 	private static final CssResourceReference CSS1=new CssResourceReference(EmotIconsBehavior.class,"jquery.cssemoticons.css");
@@ -37,28 +35,28 @@ public class EmotIconsBehavior extends Behavior{
 
 		response.write("<script type=\"text/javascript\">\n");
 		response.write("$(document).ready(function(){\n");
-		for(String key : emoticonizeClassMap.keySet()){
-			if(emoticonizeClassMap.get(key)==null){
-				response.write("\t\t\t$('."+key+"').emoticonize({\n"+
+		for(String key : emoticonize.keySet()){
+			if(emoticonize.get(key)==null){
+				response.write("\t\t\t$('"+key+"').emoticonize({\n"+
 						"\t\t\t});\n");
 			}
 			else{
-				String parmArr[]=emoticonizeClassMap.get(key);
-				response.write("\t\t\t$('."+key+"').emoticonize({\n"+
+				String parmArr[]=emoticonize.get(key);
+				response.write("\t\t\t$('"+key+"').emoticonize({\n"+
 						"\t\t\t\tdelay: "+parmArr[0]+",\n"+
 						"\t\t\t\tanimate: "+parmArr[1]+",\n"+
 						"\t\t\t\texclude: '"+parmArr[2]+"'\n"+
 						"\t\t\t});\n");
 			}
 		}
-		for(String key : unEmoticonizeClassMap.keySet()){
-			if(unEmoticonizeClassMap.get(key)==null){
-				response.write("\t\t\t$('."+key+"').unemoticonize({\n"+
+		for(String key : unEmoticonize.keySet()){
+			if(unEmoticonize.get(key)==null){
+				response.write("\t\t\t$('"+key+"').unemoticonize({\n"+
 						"\t\t\t});\n");
 			}
 			else{
-				String parmArr[]=unEmoticonizeClassMap.get(key);
-				response.write("\t\t\t$('."+key+"').unemoticonize({\n"+
+				String parmArr[]=unEmoticonize.get(key);
+				response.write("\t\t\t$('"+key+"').unemoticonize({\n"+
 						"\t\t\t\tdelay: "+parmArr[0]+",\n"+
 						"\t\t\t\tanimate: "+parmArr[1]+",\n"+
 						"\t\t\t\texclude: '"+parmArr[2]+"'\n"+
@@ -66,71 +64,28 @@ public class EmotIconsBehavior extends Behavior{
 			}
 		}
 
-		for(String key : emoticonizeIdMap.keySet()){
-			if(emoticonizeIdMap.get(key)==null){
-				response.write("\t\t\t$('#"+key+"').emoticonize({\n"+
-						"\t\t\t});\n");
-			}
-			else{
-				String parmArr[]=emoticonizeIdMap.get(key);
-				response.write("\t\t\t$('#"+key+"').emoticonize({\n"+
-						"\t\t\t\tdelay: "+parmArr[0]+",\n"+
-						"\t\t\t\tanimate: "+parmArr[1]+",\n"+
-						"\t\t\t\texclude: '"+parmArr[2]+"'\n"+
-						"\t\t\t});\n");
-			}
-		}
-		for(String key : unEmoticonizeIdMap.keySet()){
-			if(unEmoticonizeIdMap.get(key)==null){
-				response.write("\t\t\t$('#"+key+"').unemoticonize({\n"+
-						"\t\t\t});\n");
-			}
-			else{
-				String parmArr[]=unEmoticonizeIdMap.get(key);
-				response.write("\t\t\t$('#"+key+"').unemoticonize({\n"+
-						"\t\t\t\tdelay: "+parmArr[0]+",\n"+
-						"\t\t\t\tanimate: "+parmArr[1]+",\n"+
-						"\t\t\t\texclude: '"+parmArr[2]+"'\n"+
-						"\t\t\t});\n");
-			}
-		}
+
 		response.write("});\n");
 		response.write("</script>\n");
 	}
 
-	public void addEmoticonizeClass(String tagClass){
-		emoticonizeClassMap.put(tagClass,null);
+	public void addEmoticonize(String id){
+		emoticonize.put(id,null);
 	}
 
-	public void addEmoticonizeClass(String tagClass, String delay, String animate, String exclude){
+	public void addEmoticonize(String id, String delay, String animate, String exclude){
 		String parmArr[]={delay,animate,exclude};
-		emoticonizeClassMap.put(tagClass,parmArr);
+		emoticonize.put(id,parmArr);
 	}
 
-	public void addUnemoticonizeClass(String tagClass){
-		unEmoticonizeClassMap.put(tagClass,null);
+	public void addUnemoticonize(String id){
+		unEmoticonize.put(id,null);
 	}
 
-	public void addUnemoticonizeClass(String tagClass, String delay, String animate, String exclude){
+	public void addUnemoticonize(String id, String delay, String animate, String exclude){
 		String parmArr[]={delay,animate,exclude};
-		unEmoticonizeClassMap.put(tagClass,parmArr);
+		unEmoticonize.put(id,parmArr);
 	}
 
-	public void addEmoticonizeId(String tagClass){
-		emoticonizeIdMap.put(tagClass,null);
-	}
 
-	public void addEmoticonizeId(String tagClass, String delay, String animate, String exclude){
-		String parmArr[]={delay,animate,exclude};
-		emoticonizeIdMap.put(tagClass,parmArr);
-	}
-
-	public void addUnemoticonizeId(String tagClass){
-		unEmoticonizeIdMap.put(tagClass,null);
-	}
-
-	public void addUnemoticonizeId(String tagClass, String delay, String animate, String exclude){
-		String parmArr[]={delay,animate,exclude};
-		unEmoticonizeIdMap.put(tagClass,parmArr);
-	}
 }
