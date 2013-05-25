@@ -20,11 +20,11 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.wicketstuff</groupId>
-	<artifactId>EmotIcons-Wicket</artifactId>
+	<groupId>com.googlecode.wicket-jquery-ui.wicket-jquery-ui-plugins</groupId>
+	<artifactId>emoticons</artifactId>
 	<packaging>jar</packaging>
 	<version>1.0-SNAPSHOT</version>
-	<name>EmotIcons_Wicket_Module</name>
+	<name>EmotIcons_Wicket_Jquery_Pulgin</name>
 
 
 	<licenses>
@@ -36,10 +36,15 @@
 	</licenses>
 	<properties>
 		<wicket.version>6.6.0</wicket.version>
-		<jetty.version>7.6.3.v20120416</jetty.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<dependencies>
+        	<dependency>
+<groupId>com.googlecode.wicket-jquery-ui</groupId>
+<artifactId>wicket-jquery-ui-core</artifactId>
+<version>6.7.0</version>
+</dependency>
+        <!-- WICKET DEPENDENCIES -->
         <dependency>
             <groupId>org.apache.wicket</groupId>
             <artifactId>wicket-core</artifactId>
